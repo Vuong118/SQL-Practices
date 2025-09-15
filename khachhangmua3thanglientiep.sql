@@ -1,30 +1,12 @@
-﻿SELECT TOP (1000) [SalesOrderID]
-      ,[RevisionNumber]
-      ,[OrderDate]
-      ,[DueDate]
-      ,[ShipDate]
-      ,[Status]
-      ,[OnlineOrderFlag]
-      ,[SalesOrderNumber]
-      ,[PurchaseOrderNumber]
-      ,[AccountNumber]
-      ,[CustomerID]
-      ,[SalesPersonID]
-      ,[TerritoryID]
-      ,[BillToAddressID]
-      ,[ShipToAddressID]
-      ,[ShipMethodID]
-      ,[CreditCardID]
-      ,[CreditCardApprovalCode]
-      ,[CurrencyRateID]
-      ,[SubTotal]
-      ,[TaxAmt]
-      ,[Freight]
-      ,[TotalDue]
-      ,[Comment]
-      ,[rowguid]
-      ,[ModifiedDate]
-  FROM [AdventureWorks2022].[Sales].[SalesOrderHeader];
+﻿/*
+Bài toán : tìm danh sách khách hàng có đơn mua 3 tháng liên tiếp 
+
+dùng CTE (Common Table Expression) để tách các bước logic.
+ROW_NUMBER() để đánh số thứ tự tháng.
+GROUP BY + HAVING để lọc chuỗi dài ≥ 3 tháng.
+*/
+
+
 --bảng danhsach để lấy tháng có đơn theo khách hàng 
 WITH danhsach AS (
     SELECT CustomerID,
