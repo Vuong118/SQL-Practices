@@ -32,16 +32,11 @@
 		d.OrderDate,
 		d.SalesOrderID
  FROM [AdventureWorks2022].[Sales].[Customer] c
+ --lấy từng khách hàng duyệt qua bảng trong CROSS APPLY 
  CROSS APPLY (SELECT
-					TOP 1 s.SalesOrderID, s.OrderDate
+					TOP 1 s.SalesOrderID, s.OrderDate --với mỗi khách hàng vừa lấy ,chạy vào bảng SalesOrderHeader 
 		FROM [AdventureWorks2022].[Sales].[SalesOrderHeader] s
-			WHERE s.CustomerID = c.CustomerID 
+			WHERE s.CustomerID = c.CustomerID --lọc dòng có CustomerID trùng với nhau
+
 ) AS d
 ORDER BY CustomerID;
-
-/*
-lấy từng khách hàng duyệt qua bảng trong CROSS APPLY 
-với mỗi khách hàng vừa lấy ,chạy vào bảng SalesOrderHeader 
-lọc dòng có CustomerID trùng với nhau và xắp xếp theo orderdate
-
-*/
