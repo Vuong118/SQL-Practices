@@ -1,33 +1,10 @@
-﻿SELECT TOP (1000) [SalesOrderID]
-      ,[RevisionNumber]
-      ,[OrderDate]
-      ,[DueDate]
-      ,[ShipDate]
-      ,[Status]
-      ,[OnlineOrderFlag]
-      ,[SalesOrderNumber]
-      ,[PurchaseOrderNumber]
-      ,[AccountNumber]
-      ,[CustomerID]
-      ,[SalesPersonID]
-      ,[TerritoryID]
-      ,[BillToAddressID]
-      ,[ShipToAddressID]
-      ,[ShipMethodID]
-      ,[CreditCardID]
-      ,[CreditCardApprovalCode]
-      ,[CurrencyRateID]
-      ,[SubTotal]
-      ,[TaxAmt]
-      ,[Freight]
-      ,[TotalDue]
-      ,[Comment]
-      ,[rowguid]
-      ,[ModifiedDate]
-  FROM [AdventureWorks2022].[Sales].[SalesOrderHeader];
+﻿/*
+Bài toán : Doanh thu theo nhân viên
+ Tính doanh thu của từng nhân viên bán hàng (SalesPersonID) trong năm 2014, kèm theo % so với tổng doanh thu công ty.
+*/
   --tạo CTE nhanvien
 WITH nhanvien AS (
-SELECT 
+SELECT
 		SalesPersonID,
 		SUM(TotalDue) AS Totaldueyear --tính tổng doanh thu nv theo năm 
 	FROM [AdventureWorks2022].[Sales].[SalesOrderHeader]
